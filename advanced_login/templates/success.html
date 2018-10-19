@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Success!</title>
+</head>
+
+<style>
+
+.red {
+    background-color: red;
+    width: 80px;
+    padding: 10px;
+    color: white;
+    border-radius: 10px;
+    text-decoration: none;
+}
+</style>
+<body>
+
+
+    <h1>Welcome, you've been logged in, {{ session['first_name']|upper }}</h1>
+ 
+    <a href="/logout" class="red">Log out</a>
+
+</body>
+</html>

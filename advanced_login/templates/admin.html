@@ -1,0 +1,71 @@
+<html>
+<head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>User List</title>
+<style>
+.container h1{
+    text-align: center;
+    background-color: lightskyblue;
+    margin: 0px auto;
+    margin-top: 25px;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.red {
+background-color: red;
+width: 80px;
+padding: 10px;
+color: white;
+border-radius: 10px;
+text-decoration: none;
+}
+</style>
+</head>
+<body>
+        <h1>Welcome, you've been logged in, {{ session['first_name']|upper }}</h1>
+ 
+        <a href="/logout" class="red">Log out</a>
+    <div class="container">
+
+        <h1>User List</h1>
+        <table class="table table-secondary ">
+                <thead>
+                    <tr>
+                    <th scope="col">User ID</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">User Level</th>
+                    <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for user in users%}
+                        <tr>
+                            <th scope="row">{{user["id"]}}</th>
+                            <th >{{user["first_name"]}}</th>
+                            <th >{{user["last_name"]}}</th>
+                            <th >{{user["email"]}}</th>
+                            <th >{{user["user_level"]}}</th>
+
+                            <th >
+                               
+                                <a href="/remove/{{user["id"]}}" class="text-danger" >Remove user |</a>
+                                {% if user['user_level'] == 9%}
+                                    <a href="/removeAdmin/{{user["id"]}}" class="text-primary">Remove Admin</a>
+                                {% endif %}
+                                
+                                {% if user['user_level'] == 1%}
+                                    <a href="/addAdmin/{{user["id"]}}" class="text-success" >Make Admin</a>
+                                {% endif %}
+                            </th>
+                            </tr>
+                    {% endfor %}
+                    
+                </tbody>
+
+        </table>
+    </div>
+</body>
+</html>
